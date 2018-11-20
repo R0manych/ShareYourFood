@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ShareYourFood.Models.EntryModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="form-horizontal" id="feedContext">
+    <hr />
+    <div class="form-group col-md-10">
+
+        <!--ko if: model().IsNew-->
+        <p><strong data-bind="text: model().Name"></strong> мы рады приветствовать вас в нашем сообществе! Вы только что съели <strong data-bind="text: model().FoodName"></strong> ! За сегодня <strong data-bind="text: model().FoodName"></strong> было съедено <strong data-bind="text: model().CountPerDay"></strong> раз!</p>
+        <!-- /ko -->
+        <!--ko ifnot: model().IsNew-->
+        <p><strong data-bind="text: model().Name"> </strong>, с возвращением! Вы только что съели <strong data-bind="text: model().FoodName"> </strong>! Всего вы съели <strong data-bind="text: model().FoodName"> </strong> <strong data-bind="text: model().CountPerUser"> </strong> раз! За сегодня <strong data-bind="text: model().FoodName"> </strong> было съедено <strong data-bind="text: model().CountPerDay"> </strong> раз!</p>
+        <!-- /ko -->
+    </div>
+
+    <div class="form-group col-md-10">
+
+        <ul data-bind="foreach: feed()">
+            <li>
+                <p> <i data-bind="text: moment(Date).format('HH:mm DD/MM/YYYY')"></i> <i data-bind="text: Name"></i> (<i data-bind="text: Email"></i>) съел <i data-bind="text: FoodName"></i></p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+        var entryModel = '@Html.Raw(ViewBag.EntryModel)';
+</script>
+
+@Scripts.Render("~/bundles/feed")
+@Scripts.Render("~/bundles/moment")

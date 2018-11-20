@@ -1,0 +1,51 @@
+﻿@model ShareYourFood.Models.BaseEntryModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+</head>
+
+<body>
+    <h1>Расскажите что Вы ели</h1>
+    <div class="form-horizontal" id="entryContext">
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2" data-bind="validationElement: Name">Имя пользователя</label>
+                <div class="col-md-10">
+                    <input class="form-control" data-bind="value: entryModel.Name" />
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email пользователя</label>
+            <div class="col-md-10">
+                <input class="form-control" data-bind="value: entryModel.Email" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Выберите блюдо</label>
+            <div class="col-md-10">
+                <select class="form-control inline" data-bind="options: AvailableFood,
+    optionsText: 'Name',
+    optionsValue: 'Id',
+    value: entryModel.FoodId,
+    optionsCaption: ' '"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Добавить новое блюдо" class="btn btn-default" data-bind="click: addFood" />
+                <input type="submit" value="Рассказать о том, что я ем" class="btn btn-default" data-bind="click: reportToAll" />
+            </div>
+        </div>
+    </div>
+</body>
+
+@Scripts.Render("~/bundles/entry")
+
+@Html.Partial("../Modal/Food/Create")

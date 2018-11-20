@@ -25,6 +25,12 @@ namespace ShareYourFood
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include("~/Scripts/knockout-{version}.js", "~/Scripts/knockout.validation.js"));
+            bundles.Add(new ScriptBundle("~/bundles/entry").Include("~/Scripts/Pages/entry.js"));
+            bundles.Add(new ScriptBundle("~/bundles/feed").Include("~/Scripts/Pages/feed.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include("~/Scripts/moment.js"));
         }
     }
 }
